@@ -30,7 +30,8 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
             ...currentQuery,
             category: label,
         };
-
+        
+        // 선택한 카테고리를 다시 선택하면 해당 카테고리가 선택 취소되는 기능 구현.
         if (params?.get("category") === label) {
             delete updatedQuery.category;
         }

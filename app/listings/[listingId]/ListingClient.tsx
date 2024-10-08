@@ -6,7 +6,7 @@ import ListingHead from "@/app/components/listings/ListingHead";
 import ListingInfo from "@/app/components/listings/ListingInfo";
 import { categories } from "@/app/components/navbar/Categories";
 import useLoginModal from "@/app/hooks/useLoginModal";
-import { SafeUser, SafeListing, SafeReservations } from "@/app/types";
+import { SafeUser, SafeListing, SafeReservation } from "@/app/types";
 import axios from "axios";
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
@@ -21,7 +21,7 @@ const initialDateRange = {
 };
 
 interface ListingClientProps {
-    reservations?: SafeReservations[];
+    reservations?: SafeReservation[];
     listing: SafeListing & {
         user: SafeUser;
     };
@@ -56,12 +56,15 @@ const ListingClient: React.FC<ListingClientProps> = ({
     const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
     const onCreateReservation = useCallback(() => {
+        // 로그인을 하지 않은 상태라면 로그인 모달을 염
         if (!currentUser) {
             return loginModal.onOpen();
         }
 
         setIsLoading(true);
-
+        
+        // 예약 생성 
+        // 예약 완료 후, My Trips 페이지로 연결되어 예약 내역이 나타남. 
         axios
             .post("/api/reservations", {
                 totalPrice,
@@ -86,6 +89,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
         return categories.find((items) => items.label === listing.category);
     }, [listing.category]);
 
+    // 예약 일수 및 숙박비 계산 
     useEffect(() => {
         if (dateRange.startDate && dateRange.endDate) {
             const dayCount = differenceInCalendarDays(

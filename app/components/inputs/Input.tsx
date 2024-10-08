@@ -45,6 +45,7 @@ const Input: React.FC<InputProps> = ({
                 ${errors[id] ? `focus:border-rose-500` : `focus:border-black`}
                 `}
             />
+            {/* focus 시에는 placeholder가 위쪽으로 작게 줄어서 올라간다! */}
             <label
                 className={`absolute text-md duration-150 transform
                 -translate-y-3 top-5 z-10 origin-[10] 
@@ -52,7 +53,7 @@ const Input: React.FC<InputProps> = ({
                 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0
                 peer-focus:-translate-y-4
                 ${errors[id] ? `text-rose-500` : `text-zinc-400`}
-            `}
+            `} 
             >
                 {label}
             </label>

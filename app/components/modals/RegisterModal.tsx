@@ -20,6 +20,7 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 const RegisterModal = () => {
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
+    // 로딩 여부 처리. 로딩 중 활성화 방지 
     const [isLoading, setIsLoading] = useState(false);
 
     const {
@@ -52,6 +53,7 @@ const RegisterModal = () => {
             });
     };
 
+    // 로그인 모달과 회원가입 모달을 전환하는 함수
     const toggle = useCallback(() => {
         registerModal.onClose();
         loginModal.onOpen();
@@ -91,6 +93,8 @@ const RegisterModal = () => {
     const footerContent = (
         <div className="flex flex-col gap-4 mt-3">
             <hr />
+
+            {/* 소셜 로그인 구현  */}
             <Button
                 outline
                 label="Continue with Google"
@@ -103,6 +107,7 @@ const RegisterModal = () => {
                 icon={AiFillGithub}
                 onClick={() => signIn("github")}
             />
+
             <div className="text-neutral-500 text-center mt-4 font-light">
                 <div className=" justify-center flex flex-row item-center gap-2">
                     <div>Already have an account?</div>

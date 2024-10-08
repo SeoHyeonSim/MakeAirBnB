@@ -133,6 +133,8 @@ const RentModal = () => {
             />
             <div className="grid grid-cols-2 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
                 {categories.map((item) => (
+                    // 카테고리 표시 
+                    // id로 category를 받는다! 
                     <div key={item.label} className="col-span-1">
                         <CategoryInput
                             onClick={(category) =>
@@ -148,6 +150,7 @@ const RentModal = () => {
         </div>
     );
 
+// 숙소 위치 정보 
     if (step === STEPS.LOCATION) {
         bodyContent = (
             <div className="flex flex-col gap-8">
@@ -164,6 +167,7 @@ const RentModal = () => {
         );
     }
 
+    // 숙소 세부 정보 
     if (step === STEPS.INFO) {
         bodyContent = (
             <div className="flex flex-col gap-8">
@@ -195,6 +199,7 @@ const RentModal = () => {
         );
     }
 
+    // 숙소 이미지 
     if (step === STEPS.IMAGES) {
         bodyContent = (
             <div className="flex flex-col gap-8">
@@ -210,6 +215,7 @@ const RentModal = () => {
         );
     }
 
+    // 숙소 소개
     if (step === STEPS.DESCRIPTION) {
         bodyContent = (
             <div className="flex flex-col gap-8">
@@ -237,6 +243,7 @@ const RentModal = () => {
         );
     }
 
+    // 숙박비 
     if (step === STEPS.PRICE) {
         bodyContent = (
             <div className="flex flex-col gap-8">
@@ -258,6 +265,7 @@ const RentModal = () => {
         );
     }
 
+    
     return (
         <Modal
             title="Your Home"

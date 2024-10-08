@@ -23,6 +23,7 @@ const TripsClient: React.FC<TripsClientProps> = ({
     const router = useRouter();
     const [deletingId, setDeletingId] = useState("");
 
+    // 예약 취소 함수
     const onCancel = useCallback(
         (id: string) => {
             setDeletingId(id);

@@ -54,7 +54,9 @@ const Modal: React.FC<ModalProps> = ({
         onSubmit();
     }, [disabled, onSubmit]);
 
+    // 추가 동작을 처리하는 함수
     const handleSecondaryAction = useCallback(() => {
+        // disabled가 true거나 secondaryAction 함수가 없으면 아무 동작도 하지 않음
         if (disabled || !secondaryAction) {
             return;
         }
@@ -76,6 +78,7 @@ const Modal: React.FC<ModalProps> = ({
                         ${showModal ? `opacity-100` : `opacity-0`}
                         `}
                     >
+                        {/* 모달의 애니메이션 효과를 적용하여 표시 여부에 따라 위치와 투명도 설정 */}
                         <div className="translate h-full lg:h-auto md:h-auto border-0 rounded-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                             <div className="flex items-center p-6 rounded-t justify-center relative border-b-[1px]">
                                 <button
